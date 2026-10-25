@@ -40,5 +40,12 @@ Model rule: any compare/outside-voice step uses Claude models only (Sonnet 5.5, 
 ## Tier C (skip, record the reason)
 land-and-deploy, setup-deploy (need a deploy target); ios-clean, ios-design-review, ios-fix, ios-qa, ios-sync (need an iOS app and device); setup-gbrain, sync-gbrain (install a CLI and database); pair-agent; scrape, setup-browser-cookies (real sessions and cookies); codex (OpenAI CLI and account); gstack-upgrade (changes the install); gstack's own browse (not registered, name clash); `_gstack-command` (extra, router only).
 
+## Extra shelf skills folded in (read from `~/.agents/skill-shelf/<name>/SKILL.md`; shelf skills, not gstack)
+- `receiving-code-review`: governs EVERY critique from opencode or Pi. Read the whole critique first, restate each point, verify it against the files, then fix or rebut with reasons; one item at a time, test each; if any item is unclear, stop and ask before implementing any. No performative agreement ("you're absolutely right"). This is the mechanism behind "never apply a critique silently".
+- `context-audit`: at Step 1 (constitution) and again before the W template PR, run its checklist only for the AGENTS.md items: no duplicated tables, command hierarchy current, no dead tools, kept lean. Its other files (MEMORY, TOOLS, USER, HEARTBEAT, SOUL) are private-setup specific; skip them and say so.
+- `dogfood`: run beside `qa-only` in Stage 7 as a second QA method (5 phases: plan, explore, document, report) on the fixture `index.html`. It names Hermes browser tools (`browser_navigate` and so on) that this setup does not have; use the existing `browse` skill (agent-browser) instead and record the substitution as a finding. Output goes in a `dogfood-output/` folder in L; screenshots must not hold personal data.
+- `bmad`: compare only. Its own gotcha says to use ONE planning method per project, so do not run it as a second planner; at Stage 3 write a short comparison (BMad vs Spec Kit vs gstack plan reviews) from its SKILL.md and the upstream README.
+- Not on this machine, so not used: Context7 (library-docs MCP). Check first and ask before installing anything.
+
 ## End
 Summarize `RESULTS.md` by tier, then list: failed skills and why; every file written outside L; anything that asked for sign-in, a key or payment; the count and list of Issues opened.
