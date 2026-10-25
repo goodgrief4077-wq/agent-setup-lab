@@ -45,7 +45,29 @@ land-and-deploy, setup-deploy (need a deploy target); ios-clean, ios-design-revi
 - `context-audit`: at Step 1 (constitution) and again before the W template PR, run its checklist only for the AGENTS.md items: no duplicated tables, command hierarchy current, no dead tools, kept lean. Its other files (MEMORY, TOOLS, USER, HEARTBEAT, SOUL) are private-setup specific; skip them and say so.
 - `dogfood`: run beside `qa-only` in Stage 7 as a second QA method (5 phases: plan, explore, document, report) on the fixture `index.html`. It names Hermes browser tools (`browser_navigate` and so on) that this setup does not have; use the existing `browse` skill (agent-browser) instead and record the substitution as a finding. Output goes in a `dogfood-output/` folder in L; screenshots must not hold personal data.
 - `bmad`: compare only. Its own gotcha says to use ONE planning method per project, so do not run it as a second planner; at Stage 3 write a short comparison (BMad vs Spec Kit vs gstack plan reviews) from its SKILL.md and the upstream README.
-- Not on this machine, so not used: Context7 (library-docs MCP). Check first and ask before installing anything.
+- Not on this machine, so not used: Context7 (library-docs MCP). Check first and ask before installing anything (pnpm only, never npx).
+
+## Ranked open-source candidates (found 2026-10-25 with `pnpm dlx skills find "<query>"`, skills 1.7.2; installs as reported by skills.sh)
+Use: for each step, run the gstack skill AND read the open-source candidate's SKILL.md from its GitHub repo (read, do not install), then record in `RESULTS.md` which was better and why. Always pnpm, never npx. Installing any of these needs Sir's OK first (check what is already on the machine and say what you found). Treat install counts as a popularity hint, not proof of quality; verify the source repo before trusting a skill.
+
+| Step | Candidate (owner/repo@skill) | Installs | Compare with |
+|---|---|---|---|
+| Spec and plan | addyosmani/agent-skills@spec-driven-development | 64.1K | Spec Kit specify, plan |
+| Plan challenge | mattpocock/skills@grill-me | 1.4M | plan-ceo-review, office-hours |
+| Plan challenge | addyosmani/agent-skills@doubt-driven-development | 56K | autoplan |
+| Code review | mattpocock/skills@code-review | 791.6K | review |
+| UI review | vercel-labs/agent-skills@web-design-guidelines | 780.4K | design-review |
+| Browser QA | vercel-labs/agent-browser@agent-browser | 1.2M | qa-only, qa, dogfood |
+| UI flow test | software-mansion/argent@argent-test-ui-flow | 26.2K | qa |
+| Security | addyosmani/agent-skills@security-and-hardening | 69.2K | cso |
+| Security | getsentry/skills@security-review | 21.1K | cso |
+| AGENTS.md | mattpocock/skills@writing-for-agents | 468.6K | slim-agent-instructions, context-audit |
+| Library docs | upstash/context7@find-docs (OFFICIAL Context7 repo, MIT) | 9.4K | Spec Kit plan research step |
+| Retro | mattpocock/skills@retro | 277.5K | retro |
+| Retro | bmad-code-org/bmad-method@bmad-retrospective | 9.8K | retro |
+Security queries "security audit" found nothing; "security review" returned off-topic cloud and chain skills (azure, solana, golang); "owasp" gave the two rows above. Changelog and docs queries gave only weak, unrelated hits, so document-generate and document-release have no ranked rival.
+
+Context7 (official, github.com/upstash/context7): the MCP server and the `find-docs` skill. Its setup (`pnpm dlx ctx7 setup --claude`, Node 22.13+) opens an OAuth sign-in and creates an API key. That is a new sign-in, so ask Sir first; if he agrees, log the whole setup as a `finding` Issue (what it changed, what it stores, how to remove it with `ctx7 remove`). The README has no privacy policy and says its docs are community-contributed and unverified. A third-party `intellectronica/agent-skills@context7` (11.2K) exists; prefer the official one.
 
 ## End
 Summarize `RESULTS.md` by tier, then list: failed skills and why; every file written outside L; anything that asked for sign-in, a key or payment; the count and list of Issues opened.
